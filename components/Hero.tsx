@@ -1,5 +1,6 @@
 
 import React from 'react';
+import OrderModal from './OrderModal';
 
 const Hero: React.FC = () => {
   const scrollToMenu = () => {
@@ -23,9 +24,9 @@ const Hero: React.FC = () => {
           playsInline
           className="w-full h-full object-cover opacity-80"
         >
-          <source 
-            src="https://player.vimeo.com/external/494163967.sd.mp4?s=6a57c5a01946059e74d156c703d2974d6a69366e&profile_id=165" 
-            type="video/mp4" 
+          <source
+            src="/hero-bg.mp4"
+            type="video/mp4"
           />
           Your browser does not support the video tag.
         </video>
@@ -35,10 +36,10 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-cafe-dark/90 via-cafe-dark/50 to-transparent md:bg-cafe-dark/40" />
 
       {/* LAYER 2: [textura] */}
-      <div 
+      <div
         className="absolute inset-0 z-20 pointer-events-none opacity-[0.15] mix-blend-overlay"
-        style={{ 
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` 
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
         }}
       />
 
@@ -57,15 +58,17 @@ const Hero: React.FC = () => {
           <p className="text-cafe-offwhite/80 text-lg md:text-xl mb-12 max-w-lg leading-relaxed font-light drop-shadow-md">
             Experience artisanal coffee brewed with passion and pastries baked fresh every morning. Henrietta's is your premium neighborhood escape.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-            <button className="group bg-cafe-teal text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-cafe-dark transition-all transform hover:-translate-y-1 shadow-2xl shadow-cafe-teal/30 flex items-center justify-center">
-              <span>Order Now</span>
-              <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </button>
-            <button 
+            <OrderModal trigger={
+              <button className="group bg-cafe-teal text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-cafe-dark transition-all transform hover:-translate-y-1 shadow-2xl shadow-cafe-teal/30 flex items-center justify-center">
+                <span>Order Now</span>
+                <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </button>
+            } />
+            <button
               onClick={scrollToMenu}
               className="bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-cafe-dark transition-all flex items-center justify-center active:scale-95"
             >

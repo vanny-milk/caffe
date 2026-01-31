@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        /* Background: Off-white for light mode */
+        --background: 0 0% 98%;
+        /* zinc-50 */
+        --foreground: 192.8 33.3% 35.9%;
+        /* Slate-like dark text for contrast */
+
+        /* Card: White */
+        --card: 0 0% 100%;
+        --card-foreground: 192.8 33.3% 35.9%;
+
+        /* Popover: White */
+        --popover: 0 0% 100%;
+        --popover-foreground: 192.8 33.3% 35.9%;
+
+        /* Primary: Teal #26a1ad */
+        --primary: 185.3 64.0% 41.4%;
+        --primary-foreground: 0 0% 100%;
+
+        /* Secondary: Slate #3d6d7a */
+        --secondary: 192.8 33.3% 35.9%;
+        --secondary-foreground: 0 0% 100%;
+
+        /* Muted: Lighter Slate or existing Slate?
+       Reference says "Secondary/Muted: Slate".
+       We'll use a lighter version of the slate for actual muted backgrounds 
+       to keep text readable, or keep it strict if meant as 'muted text color'.
+       Let's use a lower opacity or lighter mix for background muted, 
+       but for strict mapping "Secondary/Muted" implies they share the hue family.
+       For standard shadcn 'muted', it's usually a background.
+       Let's map it to a soft slate gray. 
+    */
+        --muted: 192.8 33.3% 90%;
+        /* Light slate background */
+        --muted-foreground: 192.8 33.3% 35.9%;
+
+        /* Accent: Terracotta #8e544a */
+        --accent: 8.8 31.5% 42.4%;
+        --accent-foreground: 0 0% 100%;
+
+        /* Destructive: Terracotta fit well here too as it is reddish */
+        --destructive: 8.8 31.5% 42.4%;
+        --destructive-foreground: 0 0% 100%;
+
+        --border: 192.8 33.3% 85%;
+        --input: 192.8 33.3% 85%;
+        --ring: 185.3 64.0% 41.4%;
+        /* Match primary */
+
+        --radius: 0.5rem;
+    }
+
+    .dark {
+        /* Background: Deep Black/Charcoal */
+        --background: 222.2 84% 4.9%;
+        /* zinc-950 */
+        --foreground: 0 0% 98%;
+
+        /* Card: Slightly lighter black */
+        --card: 222.2 84% 6.9%;
+        /* zinc-900-ish */
+        --card-foreground: 0 0% 98%;
+
+        /* Popover */
+        --popover: 222.2 84% 6.9%;
+        --popover-foreground: 0 0% 98%;
+
+        /* Primary: Teal #26a1ad 
+       In dark mode, sometimes we lighten it, but strict fidelity asked.
+       Will keep same or slightly adjust for readability if needed.
+    */
+        --primary: 185.3 64.0% 41.4%;
+        --primary-foreground: 0 0% 100%;
+
+        /* Secondary: Slate #3d6d7a */
+        --secondary: 192.8 33.3% 35.9%;
+        --secondary-foreground: 0 0% 100%;
+
+        /* Muted */
+        --muted: 192.8 33.3% 15%;
+        /* Dark slate background */
+        --muted-foreground: 192.8 33.3% 65%;
+
+        /* Accent: Terracotta */
+        --accent: 8.8 31.5% 42.4%;
+        --accent-foreground: 0 0% 100%;
+
+        /* Destructive */
+        --destructive: 8.8 31.5% 42.4%;
+        --destructive-foreground: 0 0% 100%;
+
+        --border: 192.8 33.3% 20%;
+        --input: 192.8 33.3% 20%;
+        --ring: 185.3 64.0% 41.4%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
+}

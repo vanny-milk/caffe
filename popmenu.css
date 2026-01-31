@@ -1,0 +1,266 @@
+/* Popmenu (PM) CSS Model */
+/* Based on ai/pm code.html reference */
+
+:root {
+    /* Color Palette - Project Brand Styling */
+    --pm-primary-yellow: #2C97A2;
+    /* cafe-teal */
+    --pm-secondary-orange: #416D75;
+    /* cafe-teal-dark */
+    --pm-accent-green: #2C97A2;
+    /* cafe-teal */
+    --pm-accent-green-hover: #416D75;
+    /* cafe-teal-dark */
+    --pm-bg-beige: #F8FAFA;
+    /* cafe-offwhite */
+    --pm-text-dark: #0F1717;
+    /* cafe-dark */
+
+    --pm-text-body: #0F1717;
+    --pm-white: #ffffff;
+
+    /* Fonts */
+    --pm-font-base: "Inter", sans-serif;
+    --pm-font-bold: "Lora", serif;
+    --pm-font-script: "Sacramento", cursive;
+}
+
+/* Reset & Base - Body style removed to prevent global override of existing project styles
+body {
+    font-family: var(--pm-font-base);
+    color: var(--pm-text-body);
+    margin: 0;
+    padding: 0;
+    background-color: var(--pm-white);
+}
+*/
+
+/* Typography - Non-Negotiable Rules: .pm- prefix */
+.pm-h1 {
+    font-family: var(--pm-font-bold);
+    font-size: 42px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.8px !important;
+    line-height: 48px !important;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    color: var(--pm-text-dark);
+}
+
+.pm-h2 {
+    font-family: var(--pm-font-bold);
+    font-size: 36px;
+    font-weight: 700 !important;
+    letter-spacing: 0;
+    line-height: 46px;
+    color: var(--pm-text-dark);
+}
+
+.pm-h3 {
+    font-family: var(--pm-font-bold);
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0;
+    line-height: 31px;
+    margin-bottom: 10px !important;
+    /* color: var(--pm-accent-green); removed to allow inheritance/project usage */
+}
+
+.pm-h4 {
+    font-family: var(--pm-font-bold);
+    font-size: 18px;
+    font-weight: 700 !important;
+    color: var(--pm-text-dark);
+    letter-spacing: 0;
+    line-height: 23px;
+    margin-bottom: 10px;
+}
+
+/* Accessible Heading Helper */
+.pm-AH {
+    /* Helper class often used in conjunction, basic reset or specific utility if found */
+}
+
+/* Navigation - .navbar structure */
+nav.navbar {
+    min-height: 90px !important;
+    padding: 25px 15px;
+    background-color: var(--pm-accent-green) !important;
+    box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .nav {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.navbar .nav>li>a {
+    color: var(--pm-white) !important;
+    font-size: 0.9em;
+    /* clamp approximation */
+    letter-spacing: 0.8px;
+    font-family: var(--pm-font-bold);
+    margin: 0 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+}
+
+.navbar .nav>li>a:hover,
+.navbar .nav>li>a:focus {
+    color: var(--pm-primary-yellow) !important;
+    opacity: 1 !important;
+}
+
+/* Featured Link (e.g., Order Online) */
+a.pm-link-featured {
+    background-color: #E9AA22 !important;
+    /* Slightly darker yellow/gold variation in reference */
+    border-radius: 4px !important;
+    box-shadow: 0 4px 0 0 var(--pm-secondary-orange) !important;
+    color: var(--pm-bg-beige) !important;
+    font-size: 15px;
+    letter-spacing: 0.8px;
+    padding: 15px 25px !important;
+    max-height: 60px !important;
+    text-decoration: none;
+    display: inline-block;
+    transform: translateY(-6px);
+    font-family: var(--pm-font-bold);
+    text-transform: uppercase;
+}
+
+a.pm-link-featured:hover,
+a.pm-link-featured:focus {
+    background-color: var(--pm-accent-green) !important;
+    box-shadow: none !important;
+    color: var(--pm-white) !important;
+}
+
+/* Buttons - Strict Fidelity */
+.pm-button {
+    background-color: var(--pm-primary-yellow) !important;
+    border-radius: 9999px;
+    /* Rounded full to match project style */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    /* Tailwind shadow-lg approximation or use var */
+    color: var(--pm-white);
+    font-family: var(--pm-font-bold);
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    margin: 10px;
+    padding: 15px 35px;
+    text-align: center;
+    text-transform: capitalize;
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 250ms;
+}
+
+.pm-button:hover,
+.pm-button:focus {
+    background-color: var(--pm-accent-green-hover);
+    box-shadow: none;
+    color: var(--pm-white);
+}
+
+/* Page Headers */
+.page-header {
+    height: 500px;
+    background-color: var(--pm-bg-beige);
+    /* Fallback */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Sections */
+.pm-custom-section {
+    padding: 50px 0;
+    background-color: var(--pm-white);
+}
+
+.pm-custom-section.pm-about-section {
+    background-color: var(--pm-white);
+}
+
+.pm-custom-section-heading {
+    font-family: var(--pm-font-bold);
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-transform: unset;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* "Brunch Club" Style Section (Beige Background variant) */
+.pm-theme-simple_two .pm-menu-section,
+.pm-custom-section.bg-beige {
+    background-color: var(--pm-bg-beige);
+}
+
+/* Footer */
+footer {
+    background-color: #E9AA22;
+    padding: 100px 0 0;
+    color: var(--pm-white);
+    text-align: center;
+}
+
+footer .pm-footer-items ul.custom-links {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+footer .pm-footer-items ul.custom-links li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+footer link-style {
+    color: var(--pm-white);
+    font-size: 19px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+footer a {
+    color: var(--pm-white);
+    font-family: var(--pm-font-bold);
+    font-size: 19px;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--pm-primary-yellow);
+}
+
+/* Utility / Helpers */
+.container {
+    max-width: 1172px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    :is(h1, h2, h3, h4, h5, h6):where(.pm-h1, h1:not(.pm-AH)) {
+        font-size: 48px !important;
+    }
+}
