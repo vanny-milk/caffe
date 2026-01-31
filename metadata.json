@@ -1,0 +1,7 @@
+{
+  "name": "Henrietta's Cafe Landing Page",
+  "description": "A high-fidelity, responsive landing page for Henrietta's Cafe featuring a modern aesthetic, artisanal typography, and premium brand colors.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
