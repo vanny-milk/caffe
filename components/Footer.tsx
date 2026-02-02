@@ -19,9 +19,8 @@ const Footer: React.FC = () => {
 
           {/* Brand Info */}
           <div className="col-span-1 md:col-span-1">
-            <div className="text-white font-serif text-3xl font-bold flex flex-col leading-tight mb-6">
-              <span className="pm-h3" style={{ color: 'white', marginBottom: 0 }}>Henrietta's</span>
-              <span className="font-accent text-cafe-teal text-4xl -mt-2 ml-4">Cafe</span>
+            <div className="mb-6">
+              <img src="/logo.png" alt="Henrietta's Cafe" className="h-40 w-auto object-contain" />
             </div>
             <p className="text-cafe-offwhite/60 leading-relaxed mb-8">
               Founded in 2026, Henrietta's provides a sanctuary for coffee lovers and artisanal enthusiasts in the heart of the city.

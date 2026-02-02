@@ -20,6 +20,10 @@ const config = {
             },
         },
         extend: {
+            fontFamily: {
+                sans: ["Inter", "sans-serif"],
+                serif: ["Lora", "serif"],
+            },
             colors: {
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
@@ -53,6 +57,15 @@ const config = {
                 card: {
                     DEFAULT: "hsl(var(--card))",
                     foreground: "hsl(var(--card-foreground))",
+                },
+                cafe: {
+                    green: '#3aa6b0', // Mapping "Green" to Teal (Color C) to align with design system primary
+                    gold: '#8f5046',  // Mapping "Gold" to Rust (Color E) as "Accent" since Gold is gone. 
+                    // NOTE: This changes visual ID significantly but strictly follows the palette restriction.
+                    brown: '#8f5046', // Mapping "Brown" to Rust (Color E)
+                    dark: '#0f1719',  // Color A
+                    light: '#f8fafb', // Color B
+                    teal: '#3aa6b0',  // Color C
                 },
             },
             borderRadius: {

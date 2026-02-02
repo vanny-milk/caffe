@@ -125,22 +125,113 @@ const featuredItems = [
       { phrase: "So nutty and comforting.", author: "Yumi Sato", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100&h=100" },
       { phrase: "My favorite alternative.", author: "Kevin Hart", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100&h=100" }
     ]
+  },
+  {
+    id: 8,
+    name: "Truffle Mushroom Toast",
+    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800",
+    price: "$16.00",
+    description: "Wild mushrooms, truffle oil, poached egg on crispy sourdough.",
+    testimonials: [
+      { phrase: "Pure elegance on toast.", author: "Richard Klein", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100" },
+      { phrase: "The truffle aroma is divine.", author: "Marie Leclerc", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100&h=100" }
+    ]
+  },
+  {
+    id: 9,
+    name: "Velvet Flat White",
+    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800",
+    price: "$5.50",
+    description: "Ristretto shots with silky micro-foam and a touch of brown sugar.",
+    testimonials: [
+      { phrase: "The smoothest coffee ever.", author: "Alex Chen", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100&h=100" },
+      { phrase: "My daily go-to.", author: "Isabella Rosa", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=100&h=100" }
+    ]
+  },
+  {
+    id: 10,
+    name: "Pain au Chocolat",
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=800",
+    price: "$5.25",
+    description: "Valrhona dark chocolate with crispy flaky butter pastry layers.",
+    testimonials: [
+      { phrase: "Chocolate heaven!", author: "Thomas Müller", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100" },
+      { phrase: "Best in the city.", author: "Sophie Lambert", avatar: "https://images.unsplash.com/photo-1491349174775-aaafddd81942?auto=format&fit=crop&q=80&w=100&h=100" }
+    ]
+  },
+  {
+    id: 11,
+    name: "Ceremonial Matcha Latte",
+    image: "https://images.unsplash.com/photo-1597318972157-ee68b04b3c23?auto=format&fit=crop&q=80&w=800",
+    price: "$6.50",
+    description: "Stone-ground Uji matcha with maple and creamy oat milk.",
+    testimonials: [
+      { phrase: "Energizing and calming.", author: "Kenji Yamamoto", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100&h=100" },
+      { phrase: "The best matcha I've tried.", author: "Nina Petrov", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100&h=100" }
+    ]
+  },
+  {
+    id: 12,
+    name: "Almond Morning Bun",
+    image: "https://images.unsplash.com/photo-1599599810694-cd5d7f0bac25?auto=format&fit=crop&q=80&w=800",
+    price: "$5.50",
+    description: "Cinnamon sugar spiral with toasted almond frangipane.",
+    testimonials: [
+      { phrase: "Perfect with coffee.", author: "Bruno Silva", avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=100&h=100" },
+      { phrase: "The almonds are so crunchy.", author: "Victoria Wu", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100&h=100" }
+    ]
+  },
+  {
+    id: 13,
+    name: "Cold Brew Tonic",
+    image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80&w=800",
+    price: "$6.00",
+    description: "12-hour cold brew with fever tree tonic and fresh orange twist.",
+    testimonials: [
+      { phrase: "So refreshing!", author: "Lucas Green", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100" },
+      { phrase: "Summer favorite.", author: "Celia Stone", avatar: "https://images.unsplash.com/photo-1491349174775-aaafddd81942?auto=format&fit=crop&q=80&w=100&h=100" }
+    ]
   }
 ];
 
 const Favourites: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTestimonialIndices, setActiveTestimonialIndices] = useState<number[]>(featuredItems.map(() => 0));
+  const [activePaginationIndex, setActivePaginationIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Auto-passing testimonials every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveTestimonialIndices((prev) => 
+      setActiveTestimonialIndices((prev) =>
         prev.map((idx, i) => (idx + 1) % featuredItems[i].testimonials.length)
       );
-    }, 5000); 
+    }, 5000);
     return () => clearInterval(interval);
+  }, []);
+
+  // Track scroll position for pagination
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollRef.current) {
+        const { scrollLeft, clientWidth } = scrollRef.current;
+        const cardElement = scrollRef.current.querySelector('.featured-item-card') as HTMLElement;
+        if (cardElement) {
+          const cardWidth = cardElement.clientWidth;
+          const gap = 16;
+          const startPadding = scrollRef.current.querySelector('.flex-shrink-0')?.clientWidth || 24;
+          const totalItemWidth = cardWidth + gap;
+          const activeIndex = Math.round((scrollLeft - startPadding) / totalItemWidth);
+          setActivePaginationIndex(Math.max(0, activeIndex));
+        }
+      }
+    };
+
+    const scrollElement = scrollRef.current;
+    if (scrollElement) {
+      scrollElement.addEventListener('scroll', handleScroll, { passive: true });
+      return () => scrollElement.removeEventListener('scroll', handleScroll);
+    }
   }, []);
 
   const scroll = (direction: 'left' | 'right') => {
@@ -153,13 +244,13 @@ const Favourites: React.FC = () => {
   };
 
   return (
-    <div className="py-24 md:py-32 bg-white relative overflow-hidden" id="menu">
+    <div className="py-16 md:py-20 bg-white relative overflow-hidden" id="menu">
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#0F1717 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }} />
 
       <div className="max-w-[100vw] overflow-hidden relative z-10">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-end mb-12">
-          <div className="max-w-xl text-center md:text-left">
-            <span className="font-accent text-cafe-brown text-3xl md:text-4xl">Artisanally crafted</span>
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center md:items-end mb-8">
+          <div className="max-w-xl text-center md:text-left w-full md:w-auto">
+            <span className="font-accent text-cafe-brown text-3xl md:text-4xl block">Artisanally crafted</span>
             <h2 className="font-serif text-4xl md:text-6xl text-cafe-dark font-bold mt-2 leading-tight">Our Favourites</h2>
           </div>
           <div className="hidden md:flex items-center space-x-6">
@@ -179,23 +270,23 @@ const Favourites: React.FC = () => {
         </div>
 
         {/* CAROUSEL: Showing 3.5 items on Desktop */}
-        <div 
+        <div
           ref={scrollRef}
-          className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-12"
+          className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8"
         >
           {/* Padding Start Spacer */}
           <div className="flex-shrink-0 w-6 md:w-[calc((100vw-80rem)/2+1.5rem)]" />
-          
+
           {featuredItems.map((item, i) => (
-            <div 
-              key={item.id} 
-              className="featured-item-card snap-start flex-shrink-0 mr-6 md:mr-8 group flex flex-col h-full bg-cafe-offwhite rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 border border-black/[0.03]"
+            <div
+              key={item.id}
+              className="featured-item-card snap-start flex-shrink-0 mr-4 md:mr-8 group flex flex-col h-full rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 bg-black relative"
             >
-              <div className="relative h-[300px] md:h-[420px] overflow-hidden">
+              <div className="relative aspect-[4/5] w-full overflow-hidden">
                 <img src={item.image} alt={item.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                
+
                 {/* TESTIMONIAL: Top Positioning */}
-                <div className="absolute inset-x-0 top-6 flex justify-center px-6 z-20 pointer-events-none">
+                <div className="absolute inset-x-0 top-6 flex justify-center px-6 z-30 pointer-events-none">
                   <div className="relative w-full h-20">
                     {item.testimonials.map((testimonial, tIdx) => (
                       <div key={tIdx} className={`absolute inset-0 bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-white/50 flex items-center space-x-3 transition-all duration-1000 transform ${activeTestimonialIndices[i] === tIdx ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-4 scale-95'}`}>
@@ -209,29 +300,34 @@ const Favourites: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
-                
-                {/* NAME & PRICE: Side-by-side Positioning */}
-                <div className="absolute bottom-0 left-0 right-0 p-8 z-10 transform transition-transform duration-500 group-hover:-translate-y-1">
-                  <div className="flex items-center justify-between gap-4">
-                    <h3 className="font-serif text-xl md:text-2xl text-white font-bold leading-tight truncate">
+                {/* Dark Gradient Overlay for readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-20" />
+
+                {/* BOTTOM CONTENT: Price, Name, Description, CTA */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8 z-30 flex flex-col justify-end h-full">
+                  <div className="mt-auto text-center md:text-left">
+                    {/* Badge */}
+                    <div className="flex justify-center md:justify-start">
+                      <span className="inline-block bg-[#8B4F46] text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg border border-white/10 mb-3">
+                        {item.price}
+                      </span>
+                    </div>
+
+                    <h3 className="font-serif text-2xl md:text-3xl text-white font-bold leading-tight mb-2 drop-shadow-md">
                       {item.name}
                     </h3>
-                    <span className="bg-[#8B4F46] text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg shrink-0 border border-white/10">
-                      {item.price}
-                    </span>
-                  </div>
-                </div>
-              </div>
 
-              <div className="p-8 md:p-10 flex flex-col flex-grow">
-                <p className="text-cafe-teal-dark/70 text-sm md:text-base mb-8 line-clamp-2 italic font-light leading-relaxed">
-                  {item.description}
-                </p>
-                <div className="mt-auto">
-                  <button className="w-full py-4 bg-transparent border-2 border-blue-600 text-blue-600 rounded-2xl font-bold group-hover:bg-blue-600 group-hover:text-white transition-all transform active:scale-95 flex items-center justify-center space-x-2">
-                    <span>I Want it</span>
-                  </button>
+                    <p className="text-white/80 text-sm md:text-base mb-5 line-clamp-2 font-light leading-relaxed drop-shadow-sm">
+                      {item.description}
+                    </p>
+
+                    <button className="w-full py-4 bg-white text-cafe-dark rounded-2xl font-bold hover:bg-cafe-teal hover:text-white transition-all transform active:scale-95 flex items-center justify-center space-x-2 shadow-lg">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                      <span>I Want it</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -241,12 +337,7 @@ const Favourites: React.FC = () => {
           <div className="flex-shrink-0 w-6 md:w-[calc((100vw-80rem)/2+1.5rem)]" />
         </div>
 
-        {/* Mobile View Full Menu link */}
-        <div className="mt-4 px-6 text-center md:hidden">
-          <button onClick={() => setIsModalOpen(true)} className="bg-cafe-dark text-white w-full py-4 rounded-2xl font-bold text-lg">
-            Explore Full Menu
-          </button>
-        </div>
+
       </div>
 
       {/* Full Menu Modal (Logic remains same) */}
@@ -290,7 +381,7 @@ const Favourites: React.FC = () => {
           </div>
         </div>
       )}
-      
+
       <style>{`
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
@@ -299,7 +390,7 @@ const Favourites: React.FC = () => {
         .animate-in { animation: fade-in 0.3s ease-out, zoom-in 0.3s ease-out; }
 
         .featured-item-card {
-          width: 82vw; /* Mobile: 1.2 items visible roughly */
+          width: 80vw; /* Mobile: Show main item + sneak peek of next */
         }
         @media (min-width: 768px) {
           .featured-item-card {

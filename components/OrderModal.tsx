@@ -77,6 +77,7 @@ const OrderModal: React.FC<OrderModalProps> = ({ trigger, open, onOpenChange }) 
             name: "Morning Kickstart",
             price: 9.75, // 5.50 + 4.25
             desc: "Signature Latte + Blueberry Muffin",
+            image: "/morning-kickstart.png",
             items: [
                 { name: "Signature Latte", price: 5.50 },
                 { name: "Blueberry Muffin", price: 4.25 }
@@ -86,6 +87,7 @@ const OrderModal: React.FC<OrderModalProps> = ({ trigger, open, onOpenChange }) 
             name: "Lunch Break",
             price: 15.75, // 4.75 + 11.00
             desc: "Cold Brew + Breakfast Burrito",
+            image: "/lunch-break.png",
             items: [
                 { name: "Cold Brew", price: 4.75 },
                 { name: "Breakfast Burrito", price: 11.00 }
@@ -95,6 +97,7 @@ const OrderModal: React.FC<OrderModalProps> = ({ trigger, open, onOpenChange }) 
             name: "Sweet Escape",
             price: 10.25, // 5.00 + 5.25
             desc: "Cappuccino + Almond Croissant",
+            image: "/sweet-escape.png",
             items: [
                 { name: "Cappuccino", price: 5.00 },
                 { name: "Almond Croissant", price: 5.25 }
@@ -106,9 +109,9 @@ const OrderModal: React.FC<OrderModalProps> = ({ trigger, open, onOpenChange }) 
         <Dialog open={open} onOpenChange={onOpenChange}>
             {trigger && <DialogTrigger asChild>{trigger}</DialogTrigger>}
             <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-hidden flex flex-col p-0 gap-0 bg-white dark:bg-slate-900 border-none shadow-2xl">
-                <DialogHeader className="px-6 py-4 bg-cafe-bg-light border-b border-cafe-brown/10">
-                    <DialogTitle className="text-2xl font-serif text-cafe-brown flex items-center gap-2">
-                        <ShoppingBag className="w-6 h-6 text-cafe-teal" />
+                <DialogHeader className="px-6 py-4 bg-blue-950 border-b border-white/10">
+                    <DialogTitle className="text-2xl font-serif text-white flex items-center gap-2">
+                        <ShoppingBag className="w-6 h-6 text-white" />
                         Start Your Order
                     </DialogTitle>
                 </DialogHeader>
@@ -116,23 +119,23 @@ const OrderModal: React.FC<OrderModalProps> = ({ trigger, open, onOpenChange }) 
                 <Tabs defaultValue="specials" className="flex-1 flex flex-col overflow-hidden">
                     <div className="px-6 pt-4 bg-white z-10">
                         <TabsList className="grid w-full grid-cols-5 h-auto p-1 bg-cafe-brown/5 rounded-xl">
-                            <TabsTrigger value="specials" className="data-[state=active]:bg-white data-[state=active]:text-cafe-teal data-[state=active]:shadow-sm py-3 flex flex-col gap-1 items-center transition-all">
+                            <TabsTrigger value="specials" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-sm py-3 flex flex-col gap-1 items-center transition-all">
                                 <Star className="w-5 h-5 fill-current" />
                                 <span className="text-[10px] font-bold uppercase tracking-wide">Specials</span>
                             </TabsTrigger>
-                            <TabsTrigger value="drinks" className="data-[state=active]:bg-white data-[state=active]:text-cafe-teal data-[state=active]:shadow-sm py-3 flex flex-col gap-1 items-center transition-all">
+                            <TabsTrigger value="drinks" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-sm py-3 flex flex-col gap-1 items-center transition-all">
                                 <Coffee className="w-5 h-5" />
                                 <span className="text-[10px] font-medium uppercase tracking-wide">Drinks</span>
                             </TabsTrigger>
-                            <TabsTrigger value="food" className="data-[state=active]:bg-white data-[state=active]:text-cafe-teal data-[state=active]:shadow-sm py-3 flex flex-col gap-1 items-center transition-all">
+                            <TabsTrigger value="food" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-sm py-3 flex flex-col gap-1 items-center transition-all">
                                 <Utensils className="w-5 h-5" />
                                 <span className="text-[10px] font-medium uppercase tracking-wide">Food</span>
                             </TabsTrigger>
-                            <TabsTrigger value="location" className="data-[state=active]:bg-white data-[state=active]:text-cafe-teal data-[state=active]:shadow-sm py-3 flex flex-col gap-1 items-center transition-all">
+                            <TabsTrigger value="location" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-sm py-3 flex flex-col gap-1 items-center transition-all">
                                 <MapPin className="w-5 h-5" />
                                 <span className="text-[10px] font-medium uppercase tracking-wide">Location</span>
                             </TabsTrigger>
-                            <TabsTrigger value="payment" className="data-[state=active]:bg-white data-[state=active]:text-cafe-teal data-[state=active]:shadow-sm py-3 flex flex-col gap-1 items-center transition-all">
+                            <TabsTrigger value="payment" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-sm py-3 flex flex-col gap-1 items-center transition-all">
                                 <CreditCard className="w-5 h-5" />
                                 <span className="text-[10px] font-medium uppercase tracking-wide">Payment</span>
                             </TabsTrigger>
@@ -148,22 +151,30 @@ const OrderModal: React.FC<OrderModalProps> = ({ trigger, open, onOpenChange }) 
                                 </div>
                                 <div className="grid grid-cols-1 gap-4">
                                     {specials.map((item) => (
-                                        <Card key={item.name} className="overflow-hidden border-cafe-teal/20 shadow-sm hover:shadow-md transition-shadow group bg-gradient-to-r from-white to-cafe-bg-light">
-                                            <CardHeader className="p-4 flex flex-row items-center justify-between space-y-0">
+                                        <Card key={item.name} className="relative overflow-hidden border-none shadow-md hover:shadow-lg transition-shadow group h-32">
+                                            {/* Background Image */}
+                                            <div
+                                                className="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                                                style={{ backgroundImage: `url(${item.image})` }}
+                                            />
+                                            {/* Overlay */}
+                                            <div className="absolute inset-0 z-10 bg-black/50 group-hover:bg-black/40 transition-colors" />
+
+                                            <CardHeader className="relative z-20 p-4 h-full flex flex-row items-center justify-between space-y-0">
                                                 <div className="space-y-1 flex-1">
                                                     <div className="flex items-center gap-2">
-                                                        <Star className="w-4 h-4 text-orange-400 fill-orange-400" />
-                                                        <CardTitle className="text-lg font-bold text-cafe-brown group-hover:text-cafe-teal transition-colors">
+                                                        <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                                                        <CardTitle className="text-xl font-bold text-white drop-shadow-md">
                                                             {item.name}
                                                         </CardTitle>
                                                     </div>
-                                                    <CardDescription className="text-sm text-gray-600 font-medium">{item.desc}</CardDescription>
+                                                    <CardDescription className="text-sm text-gray-200 font-medium drop-shadow-sm line-clamp-2">{item.desc}</CardDescription>
                                                 </div>
                                                 <div className="flex flex-col items-end gap-2 pl-4">
-                                                    <span className="font-bold text-lg text-cafe-teal">${item.price.toFixed(2)}</span>
+                                                    <span className="font-bold text-xl text-white drop-shadow-md">${item.price.toFixed(2)}</span>
                                                     <Button
                                                         size="sm"
-                                                        className="bg-cafe-teal text-white hover:bg-cafe-teal/90 shadow-md transition-transform active:scale-95"
+                                                        className="bg-white/20 text-white backdrop-blur-sm hover:bg-white/30 border border-white/50 shadow-md transition-transform active:scale-95"
                                                         onClick={() => addComboToCart(item.items)}
                                                     >
                                                         Add Combo
@@ -178,20 +189,20 @@ const OrderModal: React.FC<OrderModalProps> = ({ trigger, open, onOpenChange }) 
                             <TabsContent value="drinks" className="mt-0 space-y-4">
                                 <div className="grid grid-cols-1 gap-3">
                                     {drinks.map((item) => (
-                                        <Card key={item.name} className="overflow-hidden border-none shadow-sm hover:shadow-md transition-shadow group">
+                                        <Card key={item.name} className="overflow-hidden border-gray-100 shadow-sm hover:shadow-md transition-shadow group bg-white">
                                             <CardHeader className="p-4 flex flex-row items-start justify-between space-y-0">
                                                 <div className="space-y-1">
-                                                    <CardTitle className="text-lg font-medium text-cafe-brown group-hover:text-cafe-teal transition-colors">
+                                                    <CardTitle className="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors">
                                                         {item.name}
                                                     </CardTitle>
                                                     <CardDescription className="text-sm text-gray-500">{item.desc}</CardDescription>
                                                 </div>
                                                 <div className="flex flex-col items-end gap-2">
-                                                    <span className="font-bold text-cafe-brown">${item.price.toFixed(2)}</span>
+                                                    <span className="font-bold text-gray-800">${item.price.toFixed(2)}</span>
                                                     <Button
                                                         size="sm"
                                                         variant="outline"
-                                                        className="h-8 w-8 rounded-full p-0 border-cafe-teal/20 hover:bg-cafe-teal hover:text-white transition-colors"
+                                                        className="h-8 w-8 rounded-full p-0 border-blue-200 hover:bg-blue-600 hover:text-white transition-colors"
                                                         onClick={() => addToCart(item.name, item.price)}
                                                     >
                                                         <Plus className="w-4 h-4" />
@@ -206,20 +217,20 @@ const OrderModal: React.FC<OrderModalProps> = ({ trigger, open, onOpenChange }) 
                             <TabsContent value="food" className="mt-0 space-y-4">
                                 <div className="grid grid-cols-1 gap-3">
                                     {food.map((item) => (
-                                        <Card key={item.name} className="overflow-hidden border-none shadow-sm hover:shadow-md transition-shadow group">
+                                        <Card key={item.name} className="overflow-hidden border-gray-100 shadow-sm hover:shadow-md transition-shadow group bg-white">
                                             <CardHeader className="p-4 flex flex-row items-start justify-between space-y-0">
                                                 <div className="space-y-1">
-                                                    <CardTitle className="text-lg font-medium text-cafe-brown group-hover:text-cafe-teal transition-colors">
+                                                    <CardTitle className="text-lg font-medium text-gray-800 group-hover:text-blue-600 transition-colors">
                                                         {item.name}
                                                     </CardTitle>
                                                     <CardDescription className="text-sm text-gray-500">{item.desc}</CardDescription>
                                                 </div>
                                                 <div className="flex flex-col items-end gap-2">
-                                                    <span className="font-bold text-cafe-brown">${item.price.toFixed(2)}</span>
+                                                    <span className="font-bold text-gray-800">${item.price.toFixed(2)}</span>
                                                     <Button
                                                         size="sm"
                                                         variant="outline"
-                                                        className="h-8 w-8 rounded-full p-0 border-cafe-teal/20 hover:bg-cafe-teal hover:text-white transition-colors"
+                                                        className="h-8 w-8 rounded-full p-0 border-blue-200 hover:bg-blue-600 hover:text-white transition-colors"
                                                         onClick={() => addToCart(item.name, item.price)}
                                                     >
                                                         <Plus className="w-4 h-4" />
@@ -370,7 +381,7 @@ const OrderModal: React.FC<OrderModalProps> = ({ trigger, open, onOpenChange }) 
                             <div className="flex items-center justify-between mb-4">
                                 <div className="flex flex-col">
                                     <span className="text-sm font-medium text-gray-500">{cart.reduce((acc, i) => acc + i.quantity, 0)} items in cart</span>
-                                    <span className="text-xl font-bold text-cafe-brown">${total.toFixed(2)}</span>
+                                    <span className="text-xl font-bold text-gray-800">${total.toFixed(2)}</span>
                                 </div>
                                 <Button size="sm" variant="ghost" className="text-red-500 hover:text-red-600 hover:bg-red-50" onClick={() => setCart([])}>Clear</Button>
                             </div>

@@ -81,8 +81,8 @@ body {
     /* Helper class often used in conjunction, basic reset or specific utility if found */
 }
 
-/* Navigation - .navbar structure */
-nav.navbar {
+/* Navigation - .navbar structure - COMMENTED OUT: Using Tailwind CSS classes from Header component */
+/* nav.navbar {
     min-height: 90px !important;
     padding: 25px 15px;
     background-color: var(--pm-accent-green) !important;
@@ -90,7 +90,7 @@ nav.navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+} */
 
 .navbar .nav {
     list-style: none;

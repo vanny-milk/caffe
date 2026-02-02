@@ -33,6 +33,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* LAYER 3: [cor] */}
+      <div className="absolute inset-0 z-10 bg-black/60" />
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-cafe-dark/90 via-cafe-dark/50 to-transparent md:bg-cafe-dark/40" />
 
       {/* LAYER 2: [textura] */}
@@ -46,22 +47,18 @@ const Hero: React.FC = () => {
       {/* LAYER 1: [texto + cta] */}
       <div className="max-w-7xl mx-auto px-6 w-full relative z-30">
         <div className="max-w-2xl animate-fade-up">
-          <div className="overflow-hidden mb-4">
-            <span className="font-accent text-cafe-teal text-3xl md:text-5xl block drop-shadow-lg">
-              Welcome to your daily ritual
-            </span>
-          </div>
+          {/* Removed "Welcome to your daily ritual" per user request */}
           <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-bold leading-[1.05] mb-8 drop-shadow-2xl">
             Where Every Sip <br />
-            <span className="text-cafe-teal italic">Feels Like Home.</span>
+            <span className="text-cafe-gold italic">Feels Like Home.</span>
           </h1>
-          <p className="text-cafe-offwhite/80 text-lg md:text-xl mb-12 max-w-lg leading-relaxed font-light drop-shadow-md">
+          <p className="text-white text-lg md:text-xl mb-12 max-w-lg leading-relaxed font-light drop-shadow-md">
             Experience artisanal coffee brewed with passion and pastries baked fresh every morning. Henrietta's is your premium neighborhood escape.
           </p>
 
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
             <OrderModal trigger={
-              <button className="group bg-cafe-teal text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-cafe-dark transition-all transform hover:-translate-y-1 shadow-2xl shadow-cafe-teal/30 flex items-center justify-center">
+              <button className="group bg-cafe-gold text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-cafe-green transition-all transform hover:-translate-y-1 shadow-2xl shadow-cafe-gold/30 flex items-center justify-center">
                 <span>Order Now</span>
                 <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -78,7 +75,17 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Decorative vertical line */}
+      {/* Scroll Down Arrow Indicator */}
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30 animate-bounce">
+        <button onClick={scrollToMenu} className="flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity">
+          <span className="text-[10px] text-white uppercase tracking-[0.2em] mb-2 font-bold drop-shadow-md">Scroll</span>
+          <svg className="w-6 h-6 text-white drop-shadow-md" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Decorative vertical line (Hidden on mobile now to avoid clutter, kept for XL) */}
       <div className="absolute bottom-10 left-10 hidden xl:flex flex-col items-center opacity-50 z-30">
         <span className="text-[10px] text-white uppercase tracking-[0.3em] font-bold mb-4 rotate-180 [writing-mode:vertical-lr]">Scroll to discover</span>
         <div className="w-px h-24 bg-white" />
